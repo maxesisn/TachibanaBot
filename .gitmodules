@@ -16,3 +16,6 @@
 [submodule "hoshino/modules/songpicker"]
 	path = hoshino/modules/songpicker
 	url = https://github.com/maxesisn/songpicker.git
+[submodule "hoshino/modules/priconne/gacha"]
+	path = hoshino/modules/priconne/gacha
+	url = https://github.com/maxesisn/gacha.git
