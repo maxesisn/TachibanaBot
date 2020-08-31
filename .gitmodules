@@ -1,0 +1,3 @@
+[submodule "hoshino/modules/hiumsentences"]
+	path = hoshino/modules/hiumsentences
+	url = https://github.com/pcrbot/hiumsentences.git
