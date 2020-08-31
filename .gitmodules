@@ -10,3 +10,6 @@
 [submodule "hoshino/modules/russian"]
 	path = hoshino/modules/russian
 	url = https://github.com/maxesisn/russian.git
+[submodule "hoshino/modules/schedule/schedule"]
+	path = hoshino/modules/schedule/schedule
+	url = https://github.com/pcrbot/schedule.git
