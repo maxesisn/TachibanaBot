@@ -13,3 +13,6 @@
 [submodule "hoshino/modules/schedule/schedule"]
 	path = hoshino/modules/schedule/schedule
 	url = https://github.com/pcrbot/schedule.git
+[submodule "hoshino/modules/songpicker"]
+	path = hoshino/modules/songpicker
+	url = https://github.com/maxesisn/songpicker.git
