@@ -7,3 +7,6 @@
 [submodule "hoshino/modules/clanrank"]
 	path = hoshino/modules/clanrank
 	url = https://github.com/pcrbot/clanrank.git
+[submodule "hoshino/modules/russian"]
+	path = hoshino/modules/russian
+	url = https://github.com/maxesisn/russian.git
