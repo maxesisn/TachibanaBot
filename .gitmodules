@@ -1,3 +1,6 @@
 [submodule "hoshino/modules/yobot/yobot"]
 	path = hoshino/modules/yobot/yobot
 	url = https://github.com/maxesisn/yobot.git
+[submodule "hoshino/modules/hiumsentences"]
+	path = hoshino/modules/hiumsentences
+	url = https://github.com/pcrbot/hiumsentences.git
