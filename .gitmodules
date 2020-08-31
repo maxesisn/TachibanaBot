@@ -1,3 +1,6 @@
 [submodule "hoshino/modules/yobot/yobot"]
 	path = hoshino/modules/yobot/yobot
 	url = https://github.com/maxesisn/yobot.git
+[submodule "hoshino/modules/clanrank"]
+	path = hoshino/modules/clanrank
+	url = https://github.com/maxesisn/clanrank.git
