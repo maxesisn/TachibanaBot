@@ -23,6 +23,11 @@ UnavailableChara = {
     1102,   # 泳装大眼
 }
 
+proxies = {
+ 	"http": "http://192.168.123.2:8889",
+ 	"https": "http://192.168.123.2:8889",
+}
+
 try:
     gadget_equip = R.img('priconne/gadget/equip.png').open()
     gadget_star = R.img('priconne/gadget/star.png').open()
@@ -115,7 +120,7 @@ def download_chara_icon(id_, star):
     save_path = R.img(f'priconne/unit/icon_unit_{id_}{star}1.png').path
     logger.info(f'Downloading chara icon from {url}')
     try:
-        rsp = requests.get(url, stream=True, timeout=5)
+        rsp = requests.get(url, stream=True, timeout=5,proxies=proxies)
     except Exception as e:
         logger.error(f'Failed to download {url}. {type(e)}')
         logger.exception(e)
