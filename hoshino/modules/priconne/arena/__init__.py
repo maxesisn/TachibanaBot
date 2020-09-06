@@ -9,6 +9,12 @@ from hoshino.util import FreqLimiter, concat_pic, pic2b64
 
 from .. import chara
 
+ERR_CODE={103:'key已被更换，请联系维护者',
+          105:'pcrdfans服务器内部错误',
+          117:'pcrdfans高峰期限流，请前往网站查询',
+          129:'api地址过时，请联系维护者更新',
+          601:'服务器IP被拉黑，请联系维护者'
+}
 sv_help = '''
 [怎么拆] 接防守队角色名 查询竞技场解法
 [点赞] 接作业id 评价作业
@@ -82,7 +88,9 @@ async def _arena_query(bot, ev: CQEvent, region: int):
 
     # 处理查询结果
     if res is None:
-        await bot.finish(ev, '查询出错，请联系维护组调教\n请先移步pcrdfans.com进行查询', at_sender=True)
+        await bot.finish(ev, '连接服务器失败，可能是pcrdfans接口维护中\n请先移步pcrdfans.com进行查询', at_sender=True)
+    if isinstance(res,int):
+        await bot.finish(ev,f'查询出错，错误信息：{ERR_CODE[res]}',at_sender=True)
     if not len(res):
         await bot.finish(ev, '抱歉没有查询到解法\n※没有作业说明随便拆 发挥你的想象力～★\n作业上传请前往pcrdfans.com', at_sender=True)
     res = res[:min(6, len(res))]    # 限制显示数量，截断结果
