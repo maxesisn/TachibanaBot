@@ -1,6 +1,7 @@
 import os
 import random
 from re import match
+import re
 import urllib
 
 from nonebot import on_command
@@ -114,3 +115,10 @@ async def chat_buxv(bot,ev):
 async def chat_jinzhi(bot,ev):
     m=ev.message
     await bot.send(ev,f'禁止禁止{m}')
+
+@sv.on_prefix(('戳他','戳她','戳它'))
+async def chat_poke(bot,ev):
+    qq_nums_raw=str(ev.message)
+    qq_nums = re.findall(r'[1-9][0-9]{4,}',qq_nums_raw)
+    for qq in qq_nums:
+        await bot.send(ev, f'[CQ:poke,qq={qq}]')
