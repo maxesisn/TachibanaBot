@@ -65,13 +65,6 @@ async def chat_queshi(bot, ctx):
     if random.random() < 0.05:
         await bot.send(ctx, R.img('确实.jpg').cqcode)
 
-
-@sv.on_keyword(('会战'))
-async def chat_clanba(bot, ctx):
-    if random.random() < 0.02:
-        await bot.send(ctx, R.img('我的天啊你看看都几度了.jpg').cqcode)
-
-
 @sv.on_keyword(('内鬼'))
 async def chat_neigui(bot, ctx):
     if random.random() < 0.10:
@@ -122,3 +115,7 @@ async def chat_poke(bot,ev):
     qq_nums = re.findall(r'[1-9][0-9]{4,}',qq_nums_raw)
     for qq in qq_nums:
         await bot.send(ev, f'[CQ:poke,qq={qq}]')
+
+@sv.on_prefix('戳我')#后期会整合成一个，加一点复杂的新功能，现在先这么用
+async def chat_poke_self(bot,ev):
+    await bot.send(ev, f'[CQ:poke,qq={ev.user_id}]')
