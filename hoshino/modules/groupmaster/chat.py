@@ -130,3 +130,12 @@ async def chat_poke(bot, ev):
 @sv.on_prefix('戳我')  # 后期会整合成一个，加一点复杂的新功能，现在先这么用
 async def chat_poke_self(bot, ev):
     await bot.send(ev, f'[CQ:poke,qq={ev.user_id}]')
+
+@sv.on_prefix('说：')
+async def chat_speak(bot,ev):
+    await bot.send(ev,f'[CQ:tts,text={ev.message}]')
+
+@sv.on_keyword(('给点礼物','我也要礼物'))
+async def chat_gift(bot,ev):
+    await bot.send(ev,f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
+
