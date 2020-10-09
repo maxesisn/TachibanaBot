@@ -85,26 +85,22 @@ async def new_year_burst(bot, ev):
         await bot.send(ev, nyb_player)
 
 
-@sv.on_rex(r'^我想要(\d+\.?\d*)元$')
+@sv.on_rex(r'^给我(\d+\.?\d*)块钱$')
+@sv.on_rex(r'^我想要(\d+\.?\d*)块钱$')
 async def chat_alipay(bot, ev):
     match = ev['match']
     ali_money = match.group(1)
-    # 例：C:/QQRobot/酷Q Pro/data/record/
-    record_path = 'E:/QQRobot/酷Q Pro_1/data/record/'
+    # 例：/root/Bot/res/voice/
+    record_path = '/root/Bot/res/voice/'
     opener = urllib.request.build_opener()
     opener.addheaders = [
         ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
     urllib.request.install_opener(opener)
     urllib.request.urlretrieve(
         f'https://mm.cqu.cc/share/zhifubaodaozhang/?money={ali_money}', f'{record_path}{ali_money}.mp3')
-    await bot.send(ev, f'[CQ:record,file={ali_money}.mp3]')
+    print(os.path.exists(f'{record_path}{ali_money}.mp3'))
+    await bot.send(ev, f'[CQ:record,file=file:///{record_path}{ali_money}.mp3]')
     os.remove(f'{record_path}{ali_money}.mp3')
-
-
-@sv.on_fullmatch('祈祷', only_to_me=True)
-async def prey(session):
-    pic = R.img(f"guru{random.randint(1, 2)}.jpg").cqcode
-    await session.send(f"{pic}", at_sender=True)
 
 
 @sv.on_prefix('不许')
