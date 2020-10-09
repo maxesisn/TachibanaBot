@@ -126,7 +126,7 @@ async def chat_poke(bot, ev):
 async def chat_poke_self(bot, ev):
     await bot.send(ev, f'[CQ:poke,qq={ev.user_id}]')
 
-@sv.on_prefix('说：')
+@sv.on_prefix(('说：','说:'))
 async def chat_speak(bot,ev):
     await bot.send(ev,f'[CQ:tts,text={ev.message}]')
 
@@ -134,3 +134,9 @@ async def chat_speak(bot,ev):
 async def chat_gift(bot,ev):
     await bot.send(ev,f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
 
+@sv.on_keyword(('色图','涩图'))
+async def chat_setu(bot,ev):
+    if str(ev.raw_message).startswith('橘小姐'):
+        pass
+    else:
+        await bot.send(ev, R.img('no-H.JPG').cqcode)
