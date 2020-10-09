@@ -85,8 +85,8 @@ async def new_year_burst(bot, ev):
         await bot.send(ev, nyb_player)
 
 
-@sv.on_rex(r'^给我(\d+\.?\d*)块钱$')
-@sv.on_rex(r'^我想要(\d+\.?\d*)块钱$')
+@sv.on_rex(r'^给我(\d+\.?\d*)块')
+@sv.on_rex(r'^我想要(\d+\.?\d*)块')
 async def chat_alipay(bot, ev):
     match = ev['match']
     ali_money = match.group(1)
@@ -98,7 +98,6 @@ async def chat_alipay(bot, ev):
     urllib.request.install_opener(opener)
     urllib.request.urlretrieve(
         f'https://mm.cqu.cc/share/zhifubaodaozhang/?money={ali_money}', f'{record_path}{ali_money}.mp3')
-    print(os.path.exists(f'{record_path}{ali_money}.mp3'))
     await bot.send(ev, f'[CQ:record,file=file:///{record_path}{ali_money}.mp3]')
     os.remove(f'{record_path}{ali_money}.mp3')
 
