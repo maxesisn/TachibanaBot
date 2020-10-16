@@ -19,3 +19,9 @@
 [submodule "hoshino/modules/pcrdescguess"]
 	path = hoshino/modules/pcrdescguess
 	url = https://github.com/maxesisn/pcrdescguess.git
+[submodule "hoshino/modules/pcrsealkiller"]
+	path = hoshino/modules/pcrsealkiller
+	url = https://github.com/maxesisn/pcrsealkiller.git
+[submodule "hoshino/modules/voiceguess"]
+	path = hoshino/modules/voiceguess
+	url = https://github.com/maxesisn/HoshinoBotVoiceGuessPlugin.git
