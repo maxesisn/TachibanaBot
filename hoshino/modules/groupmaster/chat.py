@@ -52,12 +52,6 @@ async def ddhaole(bot, ev):
     await util.silence(ev, 30)
 
 
-@sv.on_fullmatch('我好了')
-async def nihaole(bot, ev):
-    await bot.send(ev, '不许好，憋回去！')
-    await util.silence(ev, 30)
-
-
 # ============================================ #
 
 
@@ -97,7 +91,8 @@ async def chat_alipay(bot, ev):
         ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
     urllib.request.install_opener(opener)
     urllib.request.urlretrieve(
-        f'https://mm.cqu.cc/share/zhifubaodaozhang/?money={ali_money}', f'{record_path}{ali_money}.mp3')
+        f'https://mm.cqu.cc/share/zhifubaodaozhang/?money={ali_money}',
+        f'{record_path}{ali_money}.mp3')
     await bot.send(ev, f'[CQ:record,file=file:///{record_path}{ali_money}.mp3]')
     os.remove(f'{record_path}{ali_money}.mp3')
 
@@ -126,17 +121,20 @@ async def chat_poke(bot, ev):
 async def chat_poke_self(bot, ev):
     await bot.send(ev, f'[CQ:poke,qq={ev.user_id}]')
 
-@sv.on_prefix(('说：','说:'))
-async def chat_speak(bot,ev):
-    await bot.send(ev,f'[CQ:tts,text={ev.message}]')
 
-@sv.on_keyword(('给点礼物','我也要礼物'))
-async def chat_gift(bot,ev):
-    await bot.send(ev,f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
+@sv.on_prefix(('说：', '说:'))
+async def chat_speak(bot, ev):
+    await bot.send(ev, f'[CQ:tts,text={ev.message}]')
 
-@sv.on_keyword(('色图','涩图'))
-async def chat_setu(bot,ev):
-    if str(ev.raw_message).startswith('橘小姐'):
+
+@sv.on_keyword(('给点礼物', '我也要礼物'))
+async def chat_gift(bot, ev):
+    await bot.send(ev, f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
+
+
+@sv.on_keyword(('色图', '涩图'))
+async def chat_setu(bot, ev):
+    if ev.raw_message.startswith('橘小姐'):
         pass
     else:
         await bot.send(ev, R.img('no-H.JPG').cqcode)
