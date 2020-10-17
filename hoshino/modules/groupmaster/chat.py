@@ -132,7 +132,7 @@ async def chat_gift(bot, ev):
     await bot.send(ev, f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
 
 
-@sv.on_keyword(('色图', '涩图'))
+@sv.on_keyword(('色图', '涩图'),only_to_me=True)
 async def chat_setu(bot, ev):
     if ev.raw_message.startswith('橘小姐'):
         pass
