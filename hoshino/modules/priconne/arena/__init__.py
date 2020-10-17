@@ -54,11 +54,12 @@ async def arena_query_jp(bot, ev):
 def render_atk_def_teams(entries, border_pix=5):
     n = len(entries)
     icon_size = 64
-    im = Image.new('RGBA', (5 * icon_size + 100, n * (icon_size + border_pix) - border_pix+60), (255, 255, 255, 255))
+    im = Image.new('RGBA', (5 * icon_size + 100, n * (icon_size + border_pix) - border_pix+100), (255, 255, 255, 255))
     font = ImageFont.truetype('msyh.ttf', 16)
     draw = ImageDraw.Draw(im)
+    draw.text((0,0),'已为骑士君查询到以下进攻方案：', (0, 0, 0, 255), font)
     for i, e in enumerate(entries):
-        y1 = i * (icon_size + border_pix)
+        y1 = i * (icon_size + border_pix)+20
         y2 = y1 + icon_size
         for j, c in enumerate(e['atk']):
             icon = c.render_icon(icon_size)
@@ -74,9 +75,9 @@ def render_atk_def_teams(entries, border_pix=5):
         draw.text((x1, y1), e['qkey'], (0, 0, 0, 255), font)
         draw.text((x1+16, y1+20), f"{e['up']}+{e['my_up']}" if e['my_up'] else f"{e['up']}", (0, 0, 0, 255), font)
         draw.text((x1+16, y1+40), f"{e['down']}+{e['my_down']}" if e['my_down'] else f"{e['down']}", (0, 0, 0, 255), font)
-    draw.text((5,icon_size*n+35),'※发送"点赞/点踩"可进行评价', (0, 0, 0, 255), font)
-    draw.text((5,icon_size*n+50),'※使用"b怎么拆"或"台怎么拆"可按服过滤', (0, 0, 0, 255), font)
-    draw.text((5,icon_size*n+65),'Support by pcrdfans.com', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+45),'※发送"点赞/点踩"可进行评价', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+63),'※使用"b怎么拆"或"台怎么拆"可按服过滤', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+81),'Support by pcrdfans.com', (0, 0, 0, 255), font)
     return im
 
 
@@ -150,24 +151,21 @@ async def _arena_query(bot, ev: CQEvent, region: int):
     # defen = f"防守方【{' '.join(defen)}】"
     at = str(MessageSegment.at(ev.user_id))
 
-    msg = [
+    #msg = [
         # defen,
-        f'已为骑士{at}查询到以下进攻方案：',
-        str(teams),
+        #f'已为骑士{at}查询到以下进攻方案：',
+        #str(teams),
         # '作业评价：',
         # *details,
         #'※发送"点赞/点踩"可进行评价'
-    ]
+    #]
     #if region == 1:
     #    msg.append('※使用"b怎么拆"或"台怎么拆"可按服过滤')
     #msg.append('Support by pcrdfans_com')
 
     sv.logger.debug('Arena sending result...')
-    await bot.send(ev, '\n'.join(msg))
+    await bot.send(ev, str(teams), at_sender=True)
     sv.logger.debug('Arena result sent!')
-
-    if ev.group_id == 1017321923:
-        await silence(ev, 5 * 60)
 
 
 # @sv.on_prefix('点赞')
