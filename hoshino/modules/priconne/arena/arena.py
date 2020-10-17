@@ -128,8 +128,8 @@ async def do_query(id_list, user_id, region=1):
     }
     if __get_proxies_enable():
         proxies = {
-        "http": "http://192.168.123.2:8889",
-        "https": "http://192.168.123.2:8889",
+        "http": f'{config.priconne.proxies.http_proxy}',
+        "https": f'{config.priconne.proxies.https_proxy}'
         }
     else:
         proxies={}

@@ -23,12 +23,6 @@ UnavailableChara = {
     1102,   # 泳装大眼
 }
 
-def __get_proxies_enable():
-    try:
-        return config.priconne.proxies.enable
-    except:
-        return False
-
 
 try:
     gadget_equip = R.img('priconne/gadget/equip.png').open()
@@ -116,12 +110,17 @@ def gen_team_pic(team, size=64, star_slot_verbose=True):
         des.paste(src, (i * size, 0), src)
     return des
 
+def __get_proxies_enable():
+    try:
+        return config.priconne.proxies.enable
+    except:
+        return False
 
 def download_chara_icon(id_, star):
     if __get_proxies_enable():
         proxies = {
-        "http": "http://192.168.123.2:8889",
-        "https": "http://192.168.123.2:8889",
+        "http": f'{config.priconne.proxies.http_proxy}',
+        "https": f'{config.priconne.proxies.https_proxy}'
         }
     else:
         proxies={}
