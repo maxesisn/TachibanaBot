@@ -114,6 +114,11 @@ def get_true_id(quick_key: str, user_id: int) -> str:
 def __get_auth_key():
     return config.priconne.arena.AUTH_KEY
 
+def __get_proxies_enable():
+    try:
+        return config.priconne.proxies.enable
+    except:
+        return False
 
 async def do_query(id_list, user_id, region=1):
     id_list = [x * 100 + 1 for x in id_list]
@@ -121,10 +126,13 @@ async def do_query(id_list, user_id, region=1):
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36",
         "authorization": __get_auth_key(),
     }
-    proxies = {
- 	"http": "http://192.168.123.2:8889",
- 	"https": "http://192.168.123.2:8889",
-    }
+    if __get_proxies_enable():
+        proxies = {
+        "http": "http://192.168.123.2:8889",
+        "https": "http://192.168.123.2:8889",
+        }
+    else:
+        proxies={}
     payload = {
         "_sign": "a",
         "def": id_list,

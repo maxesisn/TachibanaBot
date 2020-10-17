@@ -1,3 +1,4 @@
+from hoshino import config
 import importlib
 from io import BytesIO
 
@@ -22,10 +23,12 @@ UnavailableChara = {
     1102,   # 泳装大眼
 }
 
-proxies = {
- 	"http": "http://192.168.123.2:8889",
- 	"https": "http://192.168.123.2:8889",
-}
+def __get_proxies_enable():
+    try:
+        return config.priconne.proxies.enable
+    except:
+        return False
+
 
 try:
     gadget_equip = R.img('priconne/gadget/equip.png').open()
@@ -115,9 +118,17 @@ def gen_team_pic(team, size=64, star_slot_verbose=True):
 
 
 def download_chara_icon(id_, star):
+    if __get_proxies_enable():
+        proxies = {
+        "http": "http://192.168.123.2:8889",
+        "https": "http://192.168.123.2:8889",
+        }
+    else:
+        proxies={}
     url = f'https://redive.estertion.win/icon/unit/{id_}{star}1.webp'
     save_path = R.img(f'priconne/unit/icon_unit_{id_}{star}1.png').path
     logger.info(f'Downloading chara icon from {url}')
+    
     try:
         rsp = requests.get(url, stream=True, timeout=5,proxies=proxies)
     except Exception as e:
