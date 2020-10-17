@@ -15,7 +15,7 @@ git submodule update --init --recursive
 ```
 下载子模块文件
 
-3.按照[原项目](https://github.com/Ice-Cirno/HoshinoBot)的说明，补全缺失的文件
+3.按照[原项目](https://github.com/Ice-Cirno/HoshinoBot)的说明，进行环境准备与配置。需要特别注意的是，```run.py.example```需要在按需修改后重命名为```run.py```。
 
 ## 更新方法
 使用
