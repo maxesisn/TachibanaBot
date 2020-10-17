@@ -74,9 +74,9 @@ def render_atk_def_teams(entries, border_pix=5):
         draw.text((x1, y1), e['qkey'], (0, 0, 0, 255), font)
         draw.text((x1+16, y1+20), f"{e['up']}+{e['my_up']}" if e['my_up'] else f"{e['up']}", (0, 0, 0, 255), font)
         draw.text((x1+16, y1+40), f"{e['down']}+{e['my_down']}" if e['my_down'] else f"{e['down']}", (0, 0, 0, 255), font)
-    draw.text((5,icon_size*6+35),'※发送"点赞/点踩"可进行评价', (0, 0, 0, 255), font)
-    draw.text((5,icon_size*6+50),'※使用"b怎么拆"或"台怎么拆"可按服过滤', (0, 0, 0, 255), font)
-    draw.text((5,icon_size*6+65),'Support by pcrdfans.com', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+35),'※发送"点赞/点踩"可进行评价', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+50),'※使用"b怎么拆"或"台怎么拆"可按服过滤', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+65),'Support by pcrdfans.com', (0, 0, 0, 255), font)
     return im
 
 
