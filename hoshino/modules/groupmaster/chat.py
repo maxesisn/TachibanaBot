@@ -1,3 +1,4 @@
+from hoshino.config.__bot__ import SUPERUSERS
 import os
 import random
 from re import match
@@ -13,6 +14,25 @@ from hoshino import R, Service, priv, util
 @on_command('zai?', aliases=('在?', '在？', '在吗', '在么？', '在嘛', '在嘛？'), only_to_me=True)
 async def say_hello(session):
     await session.send('buzai,cmn')
+
+@on_command('echo',only_to_me=False)
+async def chat_echo(session):
+    CQCode=session.current_arg.strip()
+    if not CQCode:
+        return
+    else:
+        if session.event.user_id not in SUPERUSERS:
+            session.finish("宁也配用echo？")
+        else:
+            CQCode = CQ_trans(CQCode)
+            await session.finish(CQCode)
+
+def CQ_trans(cqcode:str) -> str:
+    CQcode = cqcode
+    CQcode = CQcode.replace('&amp;','&')
+    CQcode = CQcode.replace('&#91;','[')
+    CQcode = CQcode.replace('&#93;',']')
+    return CQcode
 
 
 sv = Service('chat', visible=False)
