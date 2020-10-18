@@ -1,6 +1,7 @@
 import re
 import time
 from collections import defaultdict
+import asyncio
 from PIL import Image, ImageDraw, ImageFont
 
 import hoshino
@@ -118,10 +119,17 @@ async def _arena_query(bot, ev: CQEvent, region: int):
     sv.logger.info('Doing query...')
     res = None
     try:
-        res = await arena.do_query(defen, uid, region)
+        for i in range(3):
+            await asyncio.sleep(0.5)
+            if res == None:
+                res = await arena.do_query(defen, uid, region)
+            else:
+                break
     except hoshino.aiorequests.HTTPError as e:
         if e.response["code"] == 117:
             await bot.finish(ev, "高峰期服务器限流！请前往pcrdfans.com/battle")
+        if e.response["code"] == 110:
+            await bot.finish(ev, "服务器返回错误，可能是环奈id引起的pcrdfans服务器暂时故障，请尝试重新发送查询指令")
     sv.logger.info('Got response!')
 
     # 处理查询结果
