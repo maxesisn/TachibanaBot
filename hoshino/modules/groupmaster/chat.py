@@ -58,7 +58,10 @@ async def chat_laogong(bot, ev):
 
 @sv.on_fullmatch('mua', only_to_me=True)
 async def chat_mua(bot, ev):
-    await bot.send(ev, '笨蛋~', at_sender=True)
+    if not priv.check_priv(ev, priv.SUPERUSER):
+        await bot.send(ev, '¿')
+    else:
+        await bot.send(ev, '笨蛋~', at_sender=True)
 
 
 @sv.on_fullmatch('来点星奏')
