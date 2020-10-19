@@ -5,4 +5,4 @@ bot = hoshino.init()
 app = bot.asgi
 
 if __name__ == '__main__':
-    bot.run(host='0.0.0.0', port=9222, loop=asyncio.get_event_loop())
+    bot.run(host='127.0.0.1', port=9222, loop=asyncio.get_event_loop())

@@ -5,7 +5,7 @@
 
 # hoshino监听的端口与ip
 PORT = 9222
-HOST = '0.0.0.0'      # Windows部署使用此条配置
+HOST = '127.0.0.1'      # Windows部署使用此条配置
 # HOST = '172.17.0.1'   # linux + docker使用此条配置
 # docker桥的ip可能随环境不同而有变化
 # 使用这行命令`ip addr show docker0 | grep -Po 'inet \K[\d.]+'`查看你的docker桥ip
