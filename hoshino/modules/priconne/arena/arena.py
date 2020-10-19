@@ -190,6 +190,7 @@ async def do_query(id_list, user_id, region=1):
                 }
             )
     except:
+        logger.error('可能出现NoneType错误，返回None开始重新查询')
         return None
     return ret
 
