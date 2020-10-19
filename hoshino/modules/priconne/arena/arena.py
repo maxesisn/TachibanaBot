@@ -162,33 +162,35 @@ async def do_query(id_list, user_id, region=1):
         raise aiorequests.HTTPError(response=res)
 
     ret = []
-    for entry in res["data"]["result"]:
-        eid = entry["id"]
-        likes = get_likes(eid)
-        dislikes = get_dislikes(eid)
-        ret.append(
-            {
-                "qkey": gen_quick_key(eid, user_id),
-                "atk": [
-                    chara.fromid(c["id"] // 100, c["star"], c["equip"])
-                    for c in entry["atk"]
-                ],
-                "def": [
-                    chara.fromid(c["id"] // 100, c["star"], c["equip"])
-                    for c in entry["def"]
-                ],
-                "up": entry["up"],
-                "down": entry["down"],
-                "my_up": len(likes),
-                "my_down": len(dislikes),
-                "user_like": 1
-                if user_id in likes
-                else -1
-                if user_id in dislikes
-                else 0,
-            }
-        )
-
+    try:
+        for entry in res["data"]["result"]:
+            eid = entry["id"]
+            likes = get_likes(eid)
+            dislikes = get_dislikes(eid)
+            ret.append(
+                {
+                    "qkey": gen_quick_key(eid, user_id),
+                    "atk": [
+                        chara.fromid(c["id"] // 100, c["star"], c["equip"])
+                        for c in entry["atk"]
+                    ],
+                    "def": [
+                        chara.fromid(c["id"] // 100, c["star"], c["equip"])
+                        for c in entry["def"]
+                    ],
+                    "up": entry["up"],
+                    "down": entry["down"],
+                    "my_up": len(likes),
+                    "my_down": len(dislikes),
+                    "user_like": 1
+                    if user_id in likes
+                    else -1
+                    if user_id in dislikes
+                    else 0,
+                }
+            )
+    except:
+        return None
     return ret
 
 
