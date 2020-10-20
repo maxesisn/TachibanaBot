@@ -47,7 +47,7 @@
 # (全文完)
 
 SB_HOLO = '''
-Holo holo ホロ 木口 术口
+holo ホロ 木口 术口
 时乃空 ときのそら Tokino Sora 空妈
 萝卜子 ロボ子さん Roboko 大根子
 樱巫女 さくらみこ Sakura Miko 樱火龙 elite工厂厂长 黄油精英巫女 赌鬼巫女 樱污女
@@ -73,7 +73,7 @@ Holo holo ホロ 木口 术口
 宝钟 玛琳 宝鐘マリン Houshou Marine 无船承运人 山贼
 天音彼方 天音かなた Amane Kanata 彼方碳 かなたん PP天使 天妈 音妹 天音 汤达人 天音腾格尔
 桐生可可 ココ Kiryū Kiryuu Coco 🐉 蝗 虫皇 龙皇 憨憨龙 ass龙 宝批龙 西成女王
-角卷绵芽 角巻わため Tsunomaki Watame wtm 毛球 顶顶羊 咚咚羊 畜生羊 木口锤石
+角卷绵芽 角巻わため Tsunomaki Watame 毛球 顶顶羊 咚咚羊 畜生羊 木口锤石
 常暗永远 常闇トワ Tokoyami Towa 永远大人 トワ様
 姬森璐娜 姫森 ルーナ Himemori Luuna 璐娜 英语教师
 雪花菈米 雪花ラミィYukihana Lamy 菈米 雪花纯生 雪妈 菈米妈妈
