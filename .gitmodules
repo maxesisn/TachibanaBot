@@ -28,3 +28,6 @@
 [submodule "hoshino/modules/genshin/gacha"]
 	path = hoshino/modules/genshin/gacha
 	url = https://github.com/H-K-Y/Genshin_Impact_gacha.git
+[submodule "hoshino/modules/clanbattle_info"]
+	path = hoshino/modules/clanbattle_info
+	url = https://github.com/pcrbot/clanbattle_info.git
