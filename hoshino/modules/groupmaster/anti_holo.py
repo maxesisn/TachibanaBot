@@ -60,7 +60,6 @@ holo ホロ 木口 术口
 人见酷丽丝 人見クリス Hitomi Kurisu
 凑阿库娅 湊あくあ Minato Aqua 阿库娅 洋葱 阿夸 夸哥 夸神 海王 山田赫敏 大亏哥 桐谷夸人 
 紫咲诗音 紫咲シオン Murasaki Shion 诗音 傻紫 小学生 紫咲紫苑
-百鬼绫目 百鬼あやめ Nakiri Ayame 狗狗 绫目
 愈月巧可 癒月ちょこ Yuzuki Choco 巧可老师
 大空昴 大空スバル Ōzora Subaru 古神 
 大神澪 大神ミオ Ōkami Mio 大神三才 二哈 三才妈妈
