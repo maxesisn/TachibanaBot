@@ -31,3 +31,6 @@
 [submodule "hoshino/modules/priconne/gacha"]
 	path = hoshino/modules/priconne/gacha
 	url = https://github.com/pcrbot/gacha.git
+[submodule "hoshino/modules/yobot/yobot"]
+	path = hoshino/modules/yobot/yobot
+	url = https://github.com/pcrbot/yobot.git
