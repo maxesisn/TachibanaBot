@@ -15,7 +15,7 @@
 	url = https://github.com/maxesisn/songpicker.git
 [submodule "hoshino/modules/priconne/gacha"]
 	path = hoshino/modules/priconne/gacha
-	url = https://github.com/maxesisn/gacha.git
+	url = https://github.com/pcrbot/gacha.git
 [submodule "hoshino/modules/pcrdescguess"]
 	path = hoshino/modules/pcrdescguess
 	url = https://github.com/maxesisn/pcrdescguess.git
