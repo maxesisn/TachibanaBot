@@ -13,3 +13,6 @@
 [submodule "hoshino/modules/hiumsentences"]
 	path = hoshino/modules/hiumsentences
 	url = https://github.com/pcrbot/hiumsentences.git
+[submodule "hoshino/modules/GWYOG-Hoshino-plugins"]
+	path = hoshino/modules/GWYOG-Hoshino-plugins
+	url = https://github.com/GWYOG/GWYOG-Hoshino-plugins.git
