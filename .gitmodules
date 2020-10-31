@@ -4,3 +4,6 @@
 [submodule "hoshino/modules/clanbattle_info"]
 	path = hoshino/modules/clanbattle_info
 	url = https://github.com/zyujs/clanbattle_info.git
+[submodule "hoshino/modules/clanrank"]
+	path = hoshino/modules/clanrank
+	url = https://github.com/pcrbot/clanrank.git
