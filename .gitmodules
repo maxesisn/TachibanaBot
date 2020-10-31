@@ -1,0 +1,3 @@
+[submodule "hoshino/modules/hoshino_training"]
+	path = hoshino/modules/hoshino_training
+	url = https://github.com/zyujs/hoshino_training.git
