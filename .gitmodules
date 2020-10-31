@@ -16,3 +16,6 @@
 [submodule "hoshino/modules/GWYOG-Hoshino-plugins"]
 	path = hoshino/modules/GWYOG-Hoshino-plugins
 	url = https://github.com/GWYOG/GWYOG-Hoshino-plugins.git
+[submodule "hoshino/modules/russian"]
+	path = hoshino/modules/russian
+	url = https://github.com/pcrbot/russian.git
