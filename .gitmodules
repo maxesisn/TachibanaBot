@@ -7,3 +7,6 @@
 [submodule "hoshino/modules/clanrank"]
 	path = hoshino/modules/clanrank
 	url = https://github.com/pcrbot/clanrank.git
+[submodule "hoshino/modules/Genshin_Impact_bot"]
+	path = hoshino/modules/Genshin_Impact_bot
+	url = https://github.com/H-K-Y/Genshin_Impact_bot.git
