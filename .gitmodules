@@ -1,3 +1,6 @@
 [submodule "hoshino/modules/hoshino_training"]
 	path = hoshino/modules/hoshino_training
 	url = https://github.com/maxesisn/hoshino_training.git
+[submodule "hoshino/modules/clanbattle_info"]
+	path = hoshino/modules/clanbattle_info
+	url = https://github.com/zyujs/clanbattle_info.git
