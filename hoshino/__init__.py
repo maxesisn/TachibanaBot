@@ -26,9 +26,10 @@ def init() -> HoshinoBot:
     nonebot.logger.addHandler(critical_handler)
 
     for module_name in config.MODULES_ON:
+        new_module_name = module_name.replace('/','.')
         nonebot.load_plugins(
             os.path.join(os.path.dirname(__file__), 'modules', module_name),
-            f'hoshino.modules.{module_name}')
+            f'hoshino.modules.{new_module_name}')
 
     from . import msghandler
 
