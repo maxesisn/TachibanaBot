@@ -10,3 +10,6 @@
 [submodule "hoshino/modules/Genshin_Impact_bot"]
 	path = hoshino/modules/Genshin_Impact_bot
 	url = https://github.com/H-K-Y/Genshin_Impact_bot.git
+[submodule "hoshino/modules/hiumsentences"]
+	path = hoshino/modules/hiumsentences
+	url = https://github.com/pcrbot/hiumsentences.git
