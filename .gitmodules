@@ -19,3 +19,6 @@
 [submodule "hoshino/modules/russian"]
 	path = hoshino/modules/russian
 	url = https://github.com/pcrbot/russian.git
+[submodule "hoshino/modules/songpicker"]
+	path = hoshino/modules/songpicker
+	url = https://github.com/maxesisn/songpicker.git
