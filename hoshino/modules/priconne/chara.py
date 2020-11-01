@@ -108,6 +108,11 @@ def gen_team_pic(team, size=64, star_slot_verbose=True):
         des.paste(src, (i * size, 0), src)
     return des
 
+def __get_proxies():
+    try:
+        return config.priconne.proxies.enable
+    except:
+        return False
 
 def download_chara_icon(id_, star):
     url = f'https://redive.estertion.win/icon/unit/{id_}{star}1.webp'
