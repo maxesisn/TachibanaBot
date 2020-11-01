@@ -114,6 +114,11 @@ def get_true_id(quick_key: str, user_id: int) -> str:
 def __get_auth_key():
     return config.priconne.arena.AUTH_KEY
 
+def __get_proxies_status():
+    return config.priconne.proxy.enable
+
+def __get_proxy_settings():
+    return config.priconne.proxy.settings
 
 async def do_query(id_list, user_id, region=1):
     id_list = [x * 100 + 1 for x in id_list]
@@ -130,13 +135,20 @@ async def do_query(id_list, user_id, region=1):
         "ts": int(time.time()),
         "region": region,
     }
+
     logger.debug(f"Arena query {payload=}")
     try:
+        if __get_proxies_status():
+            proxy = __get_proxy_settings()
+            print(proxy)
+        else:
+            proxy = {}
         resp = await aiorequests.post(
             "https://api.pcrdfans.com/x/v1/search",
             headers=header,
             json=payload,
             timeout=10,
+            proxies=proxy
         )
         res = await resp.json()
         logger.debug(f"len(res)={len(res)}")

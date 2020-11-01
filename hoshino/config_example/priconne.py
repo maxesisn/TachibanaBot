@@ -3,5 +3,7 @@ class arena:
 
 class proxy:
     enable = False
-    http_proxy = 'http://127.0.0.1:7777'
-    https_proxy = 'http://127.0.0.1:7777'
+    settings= {
+        'http_proxy':'http://127.0.0.1:7777',
+        'https_proxy':'http://127.0.0.1:7777'
+    }

@@ -7,7 +7,7 @@ from fuzzywuzzy import fuzz, process
 from PIL import Image
 
 import hoshino
-from hoshino import R, log, sucmd, util
+from hoshino import R, log, sucmd, util, config
 from hoshino.typing import CommandSession
 
 from . import _pcr_data
@@ -108,18 +108,22 @@ def gen_team_pic(team, size=64, star_slot_verbose=True):
         des.paste(src, (i * size, 0), src)
     return des
 
-def __get_proxies():
-    try:
-        return config.priconne.proxies.enable
-    except:
-        return False
+def __get_proxies_status():
+    return config.priconne.proxy.enable
+
+def __get_proxy_settings():
+    return config.priconne.proxy.settings
 
 def download_chara_icon(id_, star):
     url = f'https://redive.estertion.win/icon/unit/{id_}{star}1.webp'
     save_path = R.img(f'priconne/unit/icon_unit_{id_}{star}1.png').path
     logger.info(f'Downloading chara icon from {url}')
     try:
-        rsp = requests.get(url, stream=True, timeout=5)
+        if __get_proxies_status():
+            proxy = __get_proxy_settings()
+        else:
+            proxy = {}
+        rsp = requests.get(url, stream=True, timeout=5, proxies=proxy)
     except Exception as e:
         logger.error(f'Failed to download {url}. {type(e)}')
         logger.exception(e)
