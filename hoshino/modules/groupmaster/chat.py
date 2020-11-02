@@ -3,6 +3,7 @@ import random
 from nonebot import on_command
 
 from hoshino import R, Service, priv, util
+from hoshino.config.__bot__ import SUPERUSERS
 
 
 # basic function for debug, not included in Service('chat')
@@ -10,6 +11,24 @@ from hoshino import R, Service, priv, util
 async def say_hello(session):
     await session.send('はい！私はいつも貴方の側にいますよ！')
 
+@on_command('echo',only_to_me=False)
+async def chat_echo(session):
+    CQCode=session.current_arg.strip()
+    if not CQCode:
+        return
+    else:
+        if session.event.user_id not in SUPERUSERS:
+            session.finish("宁也配用echo？")
+        else:
+            CQCode = CQ_trans(CQCode)
+            await session.finish(CQCode)
+
+def CQ_trans(cqcode:str) -> str:
+    CQcode = cqcode
+    CQcode = CQcode.replace('&amp;','&')
+    CQcode = CQcode.replace('&#91;','[')
+    CQcode = CQcode.replace('&#93;',']')
+    return CQcode
 
 sv = Service('chat', visible=False)
 
