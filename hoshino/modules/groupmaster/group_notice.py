@@ -7,7 +7,10 @@ sv1 = Service('group-leave-notice', help_='退群通知')
 
 @sv1.on_notice('group_decrease.leave')
 async def leave_notice(session: NoticeSession):
-    await session.send(f"{session.ctx['user_id']}退群了。")
+    uid = session.ctx['user_id']
+    infos = await session.bot.get_stranger_info(user_id=uid)
+    nickname = infos.get('nickname', '未知昵称')
+    await session.send(f"{nickname}({uid})离开了本群。")
 
 
 sv2 = Service('group-welcome', help_='入群欢迎')
