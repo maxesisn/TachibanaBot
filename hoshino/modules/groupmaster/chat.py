@@ -144,7 +144,7 @@ async def chat_speak(bot, ev):
 
 @sv.on_keyword(('给点礼物', '我也要礼物'))
 async def chat_gift(bot, ev):
-    await bot.send(ev, f'[CQ:gift,qq={ev.user_id},id={random.randint(0,8)}]')
+    await bot.send(ev, f'[CQ:gift,qq={ev.user_id},id={random.randint(0,13)}]')
 
 
 @sv.on_keyword(('色图', '涩图'),only_to_me=True)
