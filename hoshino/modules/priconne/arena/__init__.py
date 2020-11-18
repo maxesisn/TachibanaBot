@@ -55,11 +55,12 @@ async def arena_query_jp(bot, ev):
 def render_atk_def_teams(entries, border_pix=5):
     n = len(entries)
     icon_size = 64
-    im = Image.new('RGBA', (5 * icon_size + 100, n * (icon_size + border_pix) - border_pix), (255, 255, 255, 255))
-    font = ImageFont.truetype('msyh.ttc', 16)
+    im = Image.new('RGBA', (5 * icon_size + 100, n * (icon_size + border_pix) - border_pix+100), (255, 255, 255, 255))
+    font = ImageFont.truetype('msyh.ttf', 16)
     draw = ImageDraw.Draw(im)
+    draw.text((0,0),'已为骑士君查询到以下进攻方案：', (0, 0, 0, 255), font)
     for i, e in enumerate(entries):
-        y1 = i * (icon_size + border_pix)
+        y1 = i * (icon_size + border_pix)+20
         y2 = y1 + icon_size
         for j, c in enumerate(e['atk']):
             icon = c.render_icon(icon_size)
@@ -75,16 +76,20 @@ def render_atk_def_teams(entries, border_pix=5):
         draw.text((x1, y1), e['qkey'], (0, 0, 0, 255), font)
         draw.text((x1+16, y1+20), f"{e['up']}+{e['my_up']}" if e['my_up'] else f"{e['up']}", (0, 0, 0, 255), font)
         draw.text((x1+16, y1+40), f"{e['down']}+{e['my_down']}" if e['my_down'] else f"{e['down']}", (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+45),'※发送"点赞/点踩"可进行评价', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+63),'※使用"b怎么拆"或"台怎么拆"可按服过滤', (0, 0, 0, 255), font)
+    draw.text((5,icon_size*n+81),'Support by pcrdfans.com', (0, 0, 0, 255), font)
     return im
 
 
 async def _arena_query(bot, ev: CQEvent, region: int):
-
+    at = str(MessageSegment.at(ev.user_id))
+    reply = f'[CQ:reply,id={ev.message_id}]' + at
     arena.refresh_quick_key_dic()
     uid = ev.user_id
 
     if not lmt.check(uid):
-        await bot.finish(ev, '您查询得过于频繁，请稍等片刻', at_sender=True)
+        await bot.finish(ev, reply+'您查询得过于频繁，请稍等片刻')
     lmt.start_cd(uid)
 
     # 处理输入数据
@@ -99,17 +104,17 @@ async def _arena_query(bot, ev: CQEvent, region: int):
         msg = f'无法识别"{unknown}"' if score < 70 else f'无法识别"{unknown}" 您说的有{score}%可能是{name}'
         await bot.finish(ev, msg)
     if not defen:
-        await bot.finish(ev, '查询请发送"怎么拆+防守队伍"，无需+号', at_sender=True)
+        await bot.finish(ev, reply+'查询请发送"怎么拆+防守队伍"，无需+号')
     if len(defen) > 5:
-        await bot.finish(ev, '编队不能多于5名角色', at_sender=True)
+        await bot.finish(ev, reply+'编队不能多于5名角色')
     if len(defen) < 5:
-        await bot.finish(ev, '由于数据库限制，少于5名角色的检索条件请移步pcrdfans.com进行查询', at_sender=True)
+        await bot.finish(ev, reply+'由于数据库限制，少于5名角色的检索条件请移步pcrdfans.com进行查询')
     if len(defen) != len(set(defen)):
-        await bot.finish(ev, '编队中含重复角色', at_sender=True)
+        await bot.finish(ev, reply+'编队中含重复角色')
     if any(chara.is_npc(i) for i in defen):
-        await bot.finish(ev, '编队中含未实装角色', at_sender=True)
+        await bot.finish(ev, reply+'编队中含未实装角色')
     if 1004 in defen:
-        await bot.send(ev, '\n⚠️您正在查询普通版炸弹人\n※万圣版可用万圣炸弹人/瓜炸等别称', at_sender=True)
+        await bot.send(ev, reply+'\n⚠️您正在查询普通版炸弹人\n※万圣版可用万圣炸弹人/瓜炸等别称')
 
     # 执行查询
     sv.logger.info('Doing query...')
@@ -123,9 +128,9 @@ async def _arena_query(bot, ev: CQEvent, region: int):
 
     # 处理查询结果
     if res is None:
-        await bot.finish(ev, '查询出错，请联系维护组调教\n请先移步pcrdfans.com进行查询', at_sender=True)
+        await bot.finish(ev, reply+'查询出错，请联系维护组调教\n请先移步pcrdfans.com进行查询')
     if not len(res):
-        await bot.finish(ev, '抱歉没有查询到解法\n※没有作业说明随便拆 发挥你的想象力～★\n作业上传请前往pcrdfans.com', at_sender=True)
+        await bot.finish(ev, reply+'抱歉没有查询到解法\n※没有作业说明随便拆 发挥你的想象力～★\n作业上传请前往pcrdfans.com')
     res = res[:min(6, len(res))]    # 限制显示数量，截断结果
 
     # 发送回复
@@ -146,26 +151,22 @@ async def _arena_query(bot, ev: CQEvent, region: int):
 
     # defen = [ chara.fromid(x).name for x in defen ]
     # defen = f"防守方【{' '.join(defen)}】"
-    at = str(MessageSegment.at(ev.user_id))
 
-    msg = [
+    #msg = [
         # defen,
-        f'已为骑士{at}查询到以下进攻方案：',
-        str(teams),
+        #f'已为骑士{at}查询到以下进攻方案：',
+        #str(teams),
         # '作业评价：',
         # *details,
-        # '※发送"点赞/点踩"可进行评价'
-    ]
-    if region == 1:
-        msg.append('※使用"b怎么拆"或"台怎么拆"可按服过滤')
-    msg.append('Support by pcrdfans_com')
+        #'※发送"点赞/点踩"可进行评价'
+    #]
+    #if region == 1:
+    #    msg.append('※使用"b怎么拆"或"台怎么拆"可按服过滤')
+    #msg.append('Support by pcrdfans_com')
 
     sv.logger.debug('Arena sending result...')
-    await bot.send(ev, '\n'.join(msg))
+    await bot.send(ev, reply+str(teams))
     sv.logger.debug('Arena result sent!')
-
-    if ev.group_id == 1017321923:
-        await silence(ev, 5 * 60)
 
 
 # @sv.on_prefix('点赞')
