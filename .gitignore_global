@@ -1,0 +1,10 @@
+#临时用于屏蔽子模块配置文件，请自行配置global
+__pycache__/
+yarn.lock
+gacha/gid_pool.json
+seek_god_eye/uid_info.json
+artifact_collect/user_info.json
+bilisearchspider/spider_conifg.json
+ngaclanbattlespider/idx_cache_cn.json
+ngaclanbattlespider/spider_config.json
+
