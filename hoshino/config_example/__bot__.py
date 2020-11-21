@@ -34,6 +34,7 @@ MODULES_ON = {
     'botmanage',
     'dice',
     'groupmaster',
+    'GWYOG-Hoshino-plugins/pcrmiddaymusic',
     # 'hourcall',
     # 'kancolle',
     # 'mikan',
