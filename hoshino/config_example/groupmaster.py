@@ -9,3 +9,5 @@ join_approve = {
         "reject_when_not_match": True
     },
 }
+
+TAIGANG_WORDS=["不准", "不许", "禁止", "不可以", "别"]

@@ -8,7 +8,10 @@ from hoshino.config.__bot__ import SUPERUSERS
 import re
 
 
-TAIGANG_WORDS = hoshino.config.groupmaster.TAIGANG_WORDS else "不准"
+try:
+    TAIGANG_WORDS = hoshino.config.groupmaster.TAIGANG_WORDS
+except:
+    TAIGANG_WORDS = "不准"
 
 # basic function for debug, not included in Service('chat')
 @on_command('zai?', aliases=('在?', '在？', '在吗', '在么？', '在嘛', '在嘛？'), only_to_me=True)
