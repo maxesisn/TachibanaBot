@@ -53,7 +53,7 @@ async def arena_query_jp(bot, ev):
 
 
 def render_atk_def_teams(entries, border_pix=5):
-    m = await bot.get_group_member_info(
+    m = bot.get_group_member_info(
             self_id=ev.self_id, group_id=ev.group_id, user_id=uid
         )
     nickname = m["card"] or m["nickname"] or str(uid)
