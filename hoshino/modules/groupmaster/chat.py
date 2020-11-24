@@ -2,10 +2,13 @@ import random
 
 from nonebot import on_command
 
+import hoshino
 from hoshino import R, Service, priv, util
 from hoshino.config.__bot__ import SUPERUSERS
 import re
 
+
+TAIGANG_WORDS = hoshino.config.groupmaster.TAIGANG_WORDS else "不准"
 
 # basic function for debug, not included in Service('chat')
 @on_command('zai?', aliases=('在?', '在？', '在吗', '在么？', '在嘛', '在嘛？'), only_to_me=True)
@@ -82,12 +85,6 @@ async def chat_queshi(bot, ctx):
         await bot.send(ctx, R.img('确实.jpg').cqcode)
 
 
-@sv.on_keyword(('会战'))
-async def chat_clanba(bot, ctx):
-    if random.random() < 0.02:
-        await bot.send(ctx, R.img('我的天啊你看看都几度了.jpg').cqcode)
-
-
 @sv.on_keyword(('内鬼'))
 async def chat_neigui(bot, ctx):
     if random.random() < 0.10:
@@ -112,16 +109,9 @@ async def chat_alipay(bot, ev):
     await bot.send(ev, f'[CQ:record,file=https://mm.cqu.cc/share/zhifubaodaozhang/?money={ali_money}]')
 
 
-@sv.on_prefix('不许')
-async def chat_buxv(bot, ev):
-    m = ev.message
-    await bot.send(ev, f'不许不许{m}')
-
-
-@sv.on_prefix('禁止')
-async def chat_jinzhi(bot, ev):
-    m = ev.message
-    await bot.send(ev, f'禁止禁止{m}')
+@sv.on_prefix(TAIGANG_WORDS)
+async def chat_taigang(bot, ev):
+    await bot.send(ev ,'可以'+ev.message)
 
 
 @sv.on_prefix(('戳他', '戳她', '戳它'))
