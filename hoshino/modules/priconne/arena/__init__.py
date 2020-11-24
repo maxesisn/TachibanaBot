@@ -53,13 +53,17 @@ async def arena_query_jp(bot, ev):
 
 
 def render_atk_def_teams(entries, border_pix=5):
+    m = await bot.get_group_member_info(
+            self_id=ev.self_id, group_id=ev.group_id, user_id=uid
+        )
+    nickname = m["card"] or m["nickname"] or str(uid)
     n = len(entries)
     icon_size = 64
     im = Image.new('RGBA', (5 * icon_size + 80, n * (icon_size + border_pix) - border_pix + 100), (255, 255, 255, 255))
     #使用思源黑体，debian系直接sudo apt-get install fonts-noto-cjk即可安装，其它系统好自为之
     font = ImageFont.truetype('NotoSansCJK-Regular.ttc', 16)
     draw = ImageDraw.Draw(im)
-    draw.text((0,0),'已为骑士君查询到以下进攻方案：', (0, 0, 0, 255), font)
+    draw.text((0,0),f'已为骑士君 @{nickname} 查询到以下进攻方案：', (0, 0, 0, 255), font)
     for i, e in enumerate(entries):
         y1 = i * (icon_size + border_pix) + 22
         y2 = y1 + icon_size
