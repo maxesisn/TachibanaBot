@@ -113,8 +113,9 @@ async def chat_alipay(bot, ev):
 
 
 @sv.on_prefix(TAIGANG_WORDS)
-async def chat_taigang(bot, ev):
-    await bot.send(ev ,'可以'+ev.message)
+async def chat_taigang(bot, ev):    
+    m = str(ev.message).replace('我','他')
+    await bot.send(ev, '可以' + m)
 
 
 @sv.on_prefix(('戳他', '戳她', '戳它'))
