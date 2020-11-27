@@ -18,9 +18,6 @@ images/
 # 非公开的组件
 # hoshino/modules/deepchat/
 hoshino/modules/pcrclanbattle/clanbattlev3
-hoshino/modules/pcrsealkiller
-hoshino/modules/bilisearchspider
-hoshino/modules/ngaclanbattlespider
 
 # 暂时删除的代码
 TRASH/

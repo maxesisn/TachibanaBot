@@ -16,7 +16,7 @@ except:
 # basic function for debug, not included in Service('chat')
 @on_command('zai?', aliases=('在?', '在？', '在吗', '在么？', '在嘛', '在嘛？'), only_to_me=True)
 async def say_hello(session):
-    await session.send('はい！私はいつも貴方の側にいますよ！')
+    await session.send('buzai, cnm')
 
 @on_command('echo',only_to_me=False)
 async def chat_echo(session):

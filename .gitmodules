@@ -28,3 +28,6 @@
 [submodule "hoshino/modules/priconne/gacha"]
 	path = hoshino/modules/priconne/gacha
 	url = https://github.com/pcrbot/gacha.git
+[submodule "hoshino/modules/nonedice"]
+	path = hoshino/modules/nonedice
+	url = https://github.com/maxesisn/nonedice.git
