@@ -31,3 +31,6 @@
 [submodule "hoshino/modules/nonedice"]
 	path = hoshino/modules/nonedice
 	url = https://github.com/maxesisn/nonedice.git
+[submodule "hoshino/modules/revgif"]
+	path = hoshino/modules/revgif
+	url = https://github.com/maxesisn/revgif.git
