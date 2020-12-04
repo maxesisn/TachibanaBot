@@ -52,11 +52,8 @@ async def arena_query_jp(bot, ev):
     await _arena_query(bot, ev, region=4)
 
 
-def render_atk_def_teams(entries, border_pix=5):
-    m = bot.get_group_member_info(
-            self_id=ev.self_id, group_id=ev.group_id, user_id=uid
-        )
-    nickname = m["card"] or m["nickname"] or str(uid)
+def render_atk_def_teams(id, m, entries, border_pix=5):
+    nickname = m["card"] or m["nickname"] or str(id)
     n = len(entries)
     icon_size = 64
     im = Image.new('RGBA', (5 * icon_size + 80, n * (icon_size + border_pix) - border_pix + 100), (255, 255, 255, 255))
@@ -143,7 +140,10 @@ async def _arena_query(bot, ev: CQEvent, region: int):
 
     # 发送回复
     sv.logger.info('Arena generating picture...')
-    teams = render_atk_def_teams(res)
+    m = await bot.get_group_member_info(
+            self_id=ev.self_id, group_id=ev.group_id, user_id=ev.user_id
+        )
+    teams = render_atk_def_teams(ev.user_id, m, res)
     teams = pic2b64(teams)
     teams = MessageSegment.image(teams)
     sv.logger.info('Arena picture ready!')
