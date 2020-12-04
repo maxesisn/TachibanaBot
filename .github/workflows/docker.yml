@@ -8,17 +8,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Generate config file
-        run: cp -r ./config/hoshino/config_example ./config/hoshino/config
+        run: cp -r ./hoshino/config_example ./hoshino/config
 
       - name: Prepare Environment
         run: |
-          python3 -m pip install -r requirements.txt
+          pip3 install -r requirements.txt
           git submodule update --init --recursive
       
       - name: Build docker image
@@ -26,4 +26,3 @@ jobs:
           docker login --username=${{ secrets.DOCKER_USN }} --password=${{ secrets.DOCKER_PWD }}
           docker build -t maxesisn/tachibanabot:latest .
           docker push maxesisn/tachibanabot:latest
-          
