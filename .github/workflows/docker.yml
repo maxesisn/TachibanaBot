@@ -17,9 +17,7 @@ jobs:
         run: cp -r ./hoshino/config_example ./hoshino/config
 
       - name: Prepare Environment
-        run: |
-          pip3 install -r requirements.txt
-          git submodule update --init --recursive
+        run: git submodule update --init --recursive
       
       - name: Build docker image
         run: |
