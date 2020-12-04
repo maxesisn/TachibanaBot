@@ -1,3 +1,4 @@
+![avatar](https://github.com/maxesisn/TachibanaBot/workflows/Build%20and%20push%20Docker%20images/badge.svg)
 ![avatar](https://socialify.git.ci/maxesisn/TachibanaBot/image?description=1&font=Inter&issues=1&language=1&owner=1&pattern=Charlie%20Brown&theme=Light)
 
 # HoshinoBot
