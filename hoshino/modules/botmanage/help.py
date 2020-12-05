@@ -4,7 +4,7 @@ from hoshino.typing import CQEvent
 sv = Service('_help_', manage_priv=priv.SUPERUSER, visible=False)
 
 TOP_MANUAL = '''
-详细功能介绍：https://www.maxesisn.online/ChatBot/help
+详细功能介绍：https://maxesisn.online/ChatBot/help
 '''.strip()
 
 def gen_bundle_manual(bundle_name, service_list, gid):
