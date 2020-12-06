@@ -37,3 +37,4 @@ quart
 jinja2
 opencv-python
 selenium
+filetype
