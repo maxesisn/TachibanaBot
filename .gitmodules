@@ -34,3 +34,6 @@
 [submodule "hoshino/modules/revgif"]
 	path = hoshino/modules/revgif
 	url = https://github.com/maxesisn/revgif.git
+[submodule "hoshino/modules/shebot"]
+	path = hoshino/modules/shebot
+	url = https://github.com/pcrbot/plugins-for-Hoshino.git
