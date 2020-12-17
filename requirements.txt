@@ -38,3 +38,4 @@ jinja2
 opencv-python
 selenium
 filetype
+fuckit
