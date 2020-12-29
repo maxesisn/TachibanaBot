@@ -40,3 +40,6 @@
 [submodule "hoshino/modules/EFC"]
 	path = hoshino/modules/EFC
 	url = https://github.com/pcrbot/EF-Configurator.git
+[submodule "hoshino/modules/nonreminder"]
+	path = hoshino/modules/nonreminder
+	url = https://github.com/maxesisn/nonreminder.git
