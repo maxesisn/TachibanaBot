@@ -1,4 +1,5 @@
 import asyncio
+from hoshino.config.service import SHOW_CRON_LOG
 import os
 import random
 import re
@@ -25,6 +26,10 @@ _re_illegal_char = re.compile(r'[\\/:*?"<>|\.]')
 _service_config_dir = os.path.expanduser('~/.hoshino/service_config/')
 os.makedirs(_service_config_dir, exist_ok=True)
 
+try:
+    SHOW_CRON_LOG = hoshino.config.service.SHOW_CRON_LOG
+except:
+    SHOW_CRON_LOG = True
 
 def _load_service_config(service_name):
     config_file = os.path.join(_service_config_dir, f'{service_name}.json')
@@ -321,9 +326,11 @@ class Service:
             @wraps(func)
             async def wrapper():
                 try:
-                    self.logger.info(f'Scheduled job {func.__name__} start.')
+                    if SHOW_CRON_LOG:
+                        self.logger.info(f'Scheduled job {func.__name__} start.')
                     ret = await func()
-                    self.logger.info(f'Scheduled job {func.__name__} completed.')
+                    if SHOW_CRON_LOG:
+                        self.logger.info(f'Scheduled job {func.__name__} completed.')
                     return ret
                 except Exception as e:
                     self.logger.error(f'{type(e)} occured when doing scheduled job {func.__name__}.')
